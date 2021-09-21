@@ -1,4 +1,4 @@
-# ownCloud-installation-guide
+# ownCloud Installation Guide
 ### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
 
 ---
