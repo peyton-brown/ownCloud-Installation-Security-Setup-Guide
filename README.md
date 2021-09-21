@@ -33,11 +33,12 @@
 ### Run MariaDB
 - mysql_secure_installation
 
-- Set root password? [Y/n] y
-- Remove anonymous users? [Y/n] y
-- Disallow root login remotely? [Y/n] y
-- Remove test database and access to it? [Y/n] y
-- Reload privilege tables [Y/n] y
+#### Promt Answers:
+	- Set root password? [Y/n] y
+	- Remove anonymous users? [Y/n] y
+	- Disallow root login remotely? [Y/n] y
+	- Remove test database and access to it? [Y/n] y
+	- Reload privilege tables [Y/n] y
 
 #### Create the ownCloud database from the MySQL console:
 - mysql -u root -p
