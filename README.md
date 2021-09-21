@@ -6,7 +6,8 @@
 ## Introduction:
 
 ### Update & Reboot
-	- sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
+	- sudo apt-get update && sudo apt-get upgrade -y 
+	- sudo reboot
 
 ---
 
