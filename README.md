@@ -22,7 +22,7 @@
 
 ## Install MariaDB:
 
-	- sudo apt-get install software-properties-common mariadb-server mariadb-client
+	- sudo apt-get install mariadb-server
 
 ### Start MariaDB
 	- sudo systemctl status mariadb
