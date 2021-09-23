@@ -70,7 +70,6 @@
 ## Finalizing the OwnCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
-
-### Select "Storage & database", select "MySQL/MariaDB", and fill in the information.
+- Select "Storage & database", select "MySQL/MariaDB", and fill in the information.
 
 ![storage & database](https://i.imgur.com/dUAXYgO.png)
