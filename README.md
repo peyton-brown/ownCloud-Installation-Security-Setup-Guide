@@ -44,3 +44,13 @@
 	- cd /tmp
 	- sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip 
 	- sudo unzip owncloud-complete-20210721.zip -d /var/www/
+
+### ownCloud Permissions
+	-sudo chown -R www-data:www-data /var/www/owncloud/
+	- sudo chmod -R 755 /var/www/owncloud/
+
+---
+
+## Configure Apache for OwnCloud
+#### Copy the configuation code from [owncloud.conf]() into the following file in Ubuntu
+- sudo vim /etc/apache2/conf-available/owncloud.conf
