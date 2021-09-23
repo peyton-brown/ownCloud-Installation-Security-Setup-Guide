@@ -41,4 +41,6 @@
 
 ## Download & Install OwnCloud
 #### [ownCloud Downloads](https://owncloud.com/download-server/)
-- cd /tmp ; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip ; sudo unzip owncloud-complete-20210721.zip -d /var/www/
+	- cd /tmp
+	- sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip 
+	- sudo unzip owncloud-complete-20210721.zip -d /var/www/
