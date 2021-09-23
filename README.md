@@ -71,9 +71,9 @@
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
 - Enter a Username & Password for the main adminstator
-![username & password](https://i.imgur.com/PK8ooYs.png)
+![username & password](https://i.imgur.com/LOKsV74.png)
 
 
 - Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
 
-![storage & database](https://i.imgur.com/dUAXYgO.png)
+![storage & database](https://i.imgur.com/PK8ooYs.png)
