@@ -52,5 +52,5 @@
 ---
 
 ## Configure Apache for OwnCloud
-#### Copy the configuation code from [owncloud.conf]() into the following file in Ubuntu
+#### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) into the following file in Ubuntu
 - sudo vim /etc/apache2/conf-available/owncloud.conf
