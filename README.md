@@ -71,4 +71,4 @@
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
 
-![]()
+![storage & database](https://i.imgur.com/dUAXYgO.png)
