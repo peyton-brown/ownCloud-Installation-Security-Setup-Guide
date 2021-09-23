@@ -40,7 +40,7 @@
 ---
 
 ## Download & Install OwnCloud
-#### [ownCloud Downloads](https://owncloud.com/download-server/)
+### [ownCloud Downloads](https://owncloud.com/download-server/)
 	- cd /tmp
 	- sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip 
 	- sudo unzip owncloud-complete-20210721.zip -d /var/www/
@@ -52,5 +52,5 @@
 ---
 
 ## Configure Apache for OwnCloud
-#### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) into the following file in Ubuntu
+#### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file
 - sudo vim /etc/apache2/conf-available/owncloud.conf
