@@ -33,13 +33,13 @@
 - sudo mysql -u root -p
 ######
 	CREATE DATABASE owncloud_db;
-	GRANT ALL ON owncloud_db.* TO 'owncloud_db_user'@'localhost' IDENTIFIED BY 'db_password';
+	GRANT ALL ON owncloud_db.* TO 'owncloud_db_user'@'localhost' IDENTIFIED BY 'qwe';
 	FLUSH PRIVILEGES;
 	EXIT;
 
 ---
 
-## Download & Install OwnCloud
+## Download & Install ownCloud
 ### [ownCloud Downloads](https://owncloud.com/download-server/)
 	cd /tmp
 	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip 
@@ -51,7 +51,7 @@
 
 ---
 
-## Configure Apache for OwnCloud
+## Configure Apache for ownCloud
 ### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file
 - sudo vim /etc/apache2/conf-available/owncloud.conf
 
@@ -62,12 +62,13 @@
 	sudo a2enmod env
 	sudo a2enmod dir
 	sudo a2enmod mime
+	sudo a2enmod ssl
 
 	sudo systemctl restart apache2
 
 --- 
 
-## Finalizing the OwnCloud Installation
+## Finalizing the ownCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
 - Enter a Username & Password for the main adminstator
