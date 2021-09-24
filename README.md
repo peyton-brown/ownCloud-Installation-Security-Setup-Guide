@@ -86,7 +86,11 @@
 ### Important note: A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
 - Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type **has** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, **not your local Ubuntu-Server ip**. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
 
+&nbsp;
+
 ![Google Domains DNS Setup](https://i.imgur.com/AbOyF9f.png)
+
+&nbsp;
 
 ## Change Default Apache Root Directory
 
