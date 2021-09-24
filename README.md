@@ -104,4 +104,5 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 	3. Restart Apache:
 		- sudo service apache2 restart
 
+[AskUbuntu: "Change Apache document root folder to secondary hard drive"](https://askubuntu.com/questions/337874/change-apache-document-root-folder-to-secondary-hard-drive)
 ---
