@@ -92,7 +92,7 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 &nbsp;
 
-### Change Default Apache Root Directory
+### Change Default Directory for Apache Root
 **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
 
 	1. Change default directory:
@@ -101,8 +101,7 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 	2. Edit the DocumentRoot option:
 		- DocumentRoot /var/www/owncloud
 
-	3. Restart Apache:
+	3. Save and Exit, then Restart Apache:
 		- sudo service apache2 restart
-
-[AskUbuntu: "Change Apache document root folder to secondary hard drive"](https://askubuntu.com/questions/337874/change-apache-document-root-folder-to-secondary-hard-drive)
+		
 ---
