@@ -78,3 +78,5 @@
 - Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
 
 ![storage & database](https://i.imgur.com/PK8ooYs.png)
+
+---
