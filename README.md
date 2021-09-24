@@ -9,7 +9,7 @@
 ---
 
 ## Install Apache, PHP, and MariaDB
-- sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient curl wget -y
+- sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
 	sudo systemctl start apache2
@@ -72,11 +72,24 @@
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
 - Enter a Username & Password for the main adminstator
-![username & password](https://i.imgur.com/LOKsV74.png)
+![username and password](https://i.imgur.com/LOKsV74.png)
 
 
 - Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
 
-![storage & database](https://i.imgur.com/PK8ooYs.png)
+![storage and database](https://i.imgur.com/PK8ooYs.png)
+
+---
+
+## SSL / Let's Encrypt
+
+### Important note: A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
+- Setup an "A Record" inside of DNS. Enter your public ipv4 address into data,**not the Ubuntu Server ip**. Save when completed.
+
+![Google Domains DNS Setup](https://i.imgur.com/AbOyF9f.png)
+
+### Change Default Apache Root Directory
+
+#### **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
 
 ---
