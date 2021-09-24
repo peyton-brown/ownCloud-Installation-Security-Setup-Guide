@@ -83,8 +83,8 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## SSL / Let's Encrypt
 
-### Important note: A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type ***has*** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server ip***. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
+### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
+**Important:** Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type ***has*** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server ip***. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
 
 &nbsp;
 
@@ -92,8 +92,15 @@ Create a custom record inside of DNS. Hostname can be any name, for this example
 
 &nbsp;
 
-## Change Default Apache Root Directory
-
+### Change Default Apache Root Directory
 **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
+	1. Change default directory:
+		- sudo vim /etc/apache2/sites-available/000-default.conf
+	
+	2. Edit the DocumentRoot option:
+		- DocumentRoot /var/www/owncloud
+
+	3. Restart Apache:
+		- sudo service apache2 restart
 
 ---
