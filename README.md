@@ -94,6 +94,6 @@
 
 ## Change Default Apache Root Directory
 
-### **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
+**Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
 
 ---
