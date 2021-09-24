@@ -84,12 +84,12 @@
 ## SSL / Let's Encrypt
 
 ### Important note: A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-- Setup an "A Record" inside of DNS. Enter your public ipv4 address into data,**not the Ubuntu Server ip**. Save when completed.
+- Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type **has** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, **not your local Ubuntu-Server ip**. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
 
 ![Google Domains DNS Setup](https://i.imgur.com/AbOyF9f.png)
 
-### Change Default Apache Root Directory
+## Change Default Apache Root Directory
 
-#### **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
+### **Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
 
 ---
