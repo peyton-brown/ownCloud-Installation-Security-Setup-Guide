@@ -4,7 +4,7 @@
 
 ## Prerequisite Setup
 
-### Setup Static IP Address
+### Static IP Address
 For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ### Update Ubuntu Packages
