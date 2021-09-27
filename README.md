@@ -2,17 +2,17 @@
 #### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
 ---
 
-## Setup a Static IP Address
+## Setup Static IP Address
 For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ---
 
-## Update Ubuntu System Packages
+## Update Ubuntu Packages
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 ---
 
-## Install Apache, PHP, and MariaDB
+## Install Apache, PHP, MariaDB, and Dependencies
 sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
@@ -22,7 +22,7 @@ sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-co
 	sudo systemctl status apache2
 
 ### Virtual Hosts
-Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with apache. The steps are also included in the[virtual_hosts.md](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/production/virtual_hosts.md) file. This is only really needed if you plan on having multiple sites on one domain and/or server. For example, a portfolio website and an ownCloud server on the same www.example.com website.
+Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with Apache. The steps are also included in the [virtual_hosts.md](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/production/virtual_hosts.md) file. This is only really needed if you plan on having multiple sites on one domain and/or server. For example, a portfolio website and an ownCloud server on the same www.example.com website.
 
 ---
 
