@@ -9,7 +9,7 @@ sudo apt-get update -y && sudo apt-get upgrade -y
 ---
 
 ## Install Apache, PHP, and MariaDB
-sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient certbot curl wget -y
+sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
 	sudo systemctl start apache2
@@ -84,11 +84,11 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 ## SSL / Let's Encrypt
 
 ### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-**Important:** Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type ***has*** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server ip***. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
+Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
 
 &nbsp;
 
-![Google Domains DNS Setup](https://i.imgur.com/Z79gljy.png)
+![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
 
 &nbsp;
 
