@@ -26,6 +26,15 @@ Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/h
 
 ---
 
+## Google Domains
+
+### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
+Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
+
+![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
+
+---
+
 ## Run MariaDB
 sudo mysql_secure_installation
 
@@ -73,6 +82,7 @@ sudo vim /etc/apache2/conf-available/owncloud.conf
 ## Finalizing the ownCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
+#### Example: http://www.yourdomain.com/owncloud
 Enter a Username & Password for the main adminstator
 ![username and password](https://i.imgur.com/LOKsV74.png)
 
@@ -84,10 +94,5 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 ---
 
 ## SSL / Let's Encrypt
-
-### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
-
-![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
 
 ---
