@@ -2,12 +2,10 @@
 #### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
 ---
 
-## Setup Static IP Address
-For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
-
----
-
 ## Prerequisite Setup
+
+### Setup Static IP Address
+For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ### Update Ubuntu Packages
 sudo apt-get update -y && sudo apt-get upgrade -y
