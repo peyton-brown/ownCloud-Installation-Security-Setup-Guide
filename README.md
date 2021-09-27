@@ -67,8 +67,15 @@ sudo mysql -u root -p
 ---
 
 ## Configure Apache for ownCloud
-### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file
-	sudo vim /etc/apache2/conf-available/owncloud.conf
+
+### Disable Default Apache Configuration
+	sudo a2dissite 000-default
+
+### This file will control how users access ownCloud content. Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file. You will need to change example.com to whichever domain name you have.
+	sudo vim /etc/apache2/sites-available/owncloud.conf
+
+### Enable the new Apache Configuration
+	sudo a2ensite owncloud.conf
 
 ### Enable Required Apache Modules
 	sudo a2enconf owncloud; sudo a2enmod rewrite; sudo a2enmod headers; sudo a2enmod env; sudo a2enmod dir; sudo a2enmod mime; sudo a2enmod ssl
@@ -93,18 +100,7 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## SSL / Let's Encrypt
 
-### Create a new directory for the self signed certificate
-	sudo mkdir /etc/apache2/ssl
-
-### Create the self signed certificate and server keylacing both of them into the new directory. The certificate is valid for 365 days.
-	sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/owncloud.key -out /etc/apache2/ssl/owncloud.crt
-
-### Setup the Certificate
-	sudo vim /etc/apache2/sites-available/default-ssl.conf
-
-### Activate the new virtual host and restart Apache
-	sudo a2ensite default-ssl
-	sudo systemctl restart apache2
+### temp header
 
 ### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
 	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
