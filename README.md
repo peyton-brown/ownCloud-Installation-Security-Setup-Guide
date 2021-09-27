@@ -1,20 +1,28 @@
 # ownCloud Installation Guide
 #### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
+---
+
+## Setup Static IP Address
+For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ---
 
-## Update Ubuntu System Packages
+## Update Ubuntu Packages
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 ---
 
-## Install Apache, PHP, and MariaDB
-sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient certbot curl wget -y
+## Install Apache, PHP, MariaDB, and Dependencies
+sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
+	sudo ufw allow 'Apache Full'
 	sudo systemctl start apache2
 	sudo systemctl enable apache2
 	sudo systemctl status apache2
+
+### Virtual Hosts
+Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with Apache. The steps are also included in the [virtual_hosts.md](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/production/virtual_hosts.md) file. This is only really needed if you plan on having multiple sites on one domain and/or server. For example, a portfolio website and an ownCloud server on the same www.example.com website.
 
 ---
 
@@ -84,24 +92,8 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 ## SSL / Let's Encrypt
 
 ### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-**Important:** Create a custom record inside of DNS. Hostname can be any name, for this example, I used "owncloud". Type ***has*** to be "A". TTL's default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server ip***. Do not give your public ip address to anyone you do not trust. This is why the domain is important. Save when completed.
+Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
 
-&nbsp;
+![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
 
-![Google Domains DNS Setup](https://i.imgur.com/AbOyF9f.png)
-
-&nbsp;
-
-### Change Default Directory for Apache Root
-**Important:** This method assumes that ownCloud is the only Apache program being used on the server. If you have a different program that uses apache, either create a new virtual machine or skip this step and type "owncloud.yourdomain.com/owncloud" into the address bar. With this method, you will simply type "owncloud.yourdomain.com".
-
-	1. Change default directory:
-		- sudo vim /etc/apache2/sites-available/000-default.conf
-	
-	2. Edit the DocumentRoot option:
-		- DocumentRoot /var/www/owncloud
-
-	3. Save and Exit, then Restart Apache:
-		- sudo service apache2 restart
-		
 ---
