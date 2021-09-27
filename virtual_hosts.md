@@ -5,5 +5,5 @@ When using the Apache web server, you can use virtual hosts to encapsulate confi
 
 Apache on Ubuntu 18.04 has one server block enabled by default that is configured to serve documents from the /var/www/html directory. While this works well for a single site, it can become unwieldy if you are hosting multiple sites. Instead of modifying /var/www/html, let’s create a directory structure within /var/www for a your_domain site, leaving /var/www/html in place as the default directory to be served if a client request doesn’t match any other sites.
 
-Create the directory for your_domain as follows:
-    <code>sudo mkdir /var/www/your_domain</code>
+Create the directory for your_domain as follows:&nbsp;
+<code>sudo mkdir /var/www/your_domain</code>
