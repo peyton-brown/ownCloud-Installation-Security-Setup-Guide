@@ -87,7 +87,9 @@ sudo mysql -u root -p
 ## Finalizing the ownCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
-#### Example: http://www.yourdomain.com/owncloud
+#### Example: 
+	http://www.yourdomain.com/owncloud
+	192.168.1.254/owncloud
 Enter a Username & Password for the main adminstator
 ![username and password](https://i.imgur.com/LOKsV74.png)
 
