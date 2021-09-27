@@ -18,6 +18,7 @@ sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-co
 	sudo systemctl status apache2
 
 ### Virtual Hosts
+Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with apache. The steps are also included in the[virtual_hosts.md]() file.
 
 ---
 
