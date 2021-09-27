@@ -1,6 +1,10 @@
 # ownCloud Installation Guide
 #### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
-&nbsp;
+---
+
+## Setup a Static IP Address
+For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
+
 ---
 
 ## Update Ubuntu System Packages
@@ -18,7 +22,7 @@ sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-co
 	sudo systemctl status apache2
 
 ### Virtual Hosts
-Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with apache. The steps are also included in the[virtual_hosts.md]() file.
+Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04#step-5-%E2%80%94-setting-up-virtual-hosts-recommended) for setting up virtual hosts with apache. The steps are also included in the[virtual_hosts.md](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/production/virtual_hosts.md) file. This is only really needed if you plan on having multiple sites on one domain and/or server. For example, a portfolio website and an ownCloud server on the same www.example.com website.
 
 ---
 
