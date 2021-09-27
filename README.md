@@ -96,5 +96,4 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
 
-### test
 ---
