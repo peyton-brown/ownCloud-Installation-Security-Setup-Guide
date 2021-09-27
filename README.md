@@ -8,10 +8,10 @@
 For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ### Update Ubuntu Packages
-sudo apt-get update -y && sudo apt-get upgrade -y
+	sudo apt-get update -y && sudo apt-get upgrade -y
 
 ### Install Apache, PHP, MariaDB, and Dependencies
-sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
+	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
 	sudo ufw allow 'Apache Full'
@@ -34,7 +34,7 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 ---
 
 ## Run MariaDB
-sudo mysql_secure_installation
+	sudo mysql_secure_installation
 
 #### Promt Answers:
 	Set root password? [Y/n] y
@@ -68,7 +68,7 @@ sudo mysql -u root -p
 
 ## Configure Apache for ownCloud
 ### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file
-sudo vim /etc/apache2/conf-available/owncloud.conf
+	sudo vim /etc/apache2/conf-available/owncloud.conf
 
 ### Enable Required Apache Modules
 	sudo a2enconf owncloud; sudo a2enmod rewrite; sudo a2enmod headers; sudo a2enmod env; sudo a2enmod dir; sudo a2enmod mime; sudo a2enmod ssl
@@ -92,5 +92,21 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 ---
 
 ## SSL / Let's Encrypt
+
+### Create a new directory for the self signed certificate
+	sudo mkdir /etc/apache2/ssl
+
+### Create the self signed certificate and server keylacing both of them into the new directory. The certificate is valid for 365 days.
+	sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/owncloud.key -out /etc/apache2/ssl/owncloud.crt
+
+### Setup the Certificate
+	sudo vim /etc/apache2/sites-available/default-ssl.conf
+
+### Activate the new virtual host and restart Apache
+	sudo a2ensite default-ssl
+	sudo systemctl restart apache2
+
+### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
+	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
 
 ---
