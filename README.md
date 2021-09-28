@@ -14,7 +14,7 @@ For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.
 	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
-	sudo ufw allow 'Apache Full'
+	sudo ufw allow 'Apache Secure'
 	sudo systemctl start apache2
 	sudo systemctl enable apache2
 	sudo systemctl status apache2
