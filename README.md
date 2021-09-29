@@ -66,33 +66,9 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ---
 
-## Backing up ownCloud
-### Make a Backup Directory
-	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
-
-### Backup config and data Directories: 
-#### Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /owncloud-backups/config-data/, rsync is just one method, use whatever you like.
-	cd /var/www/html/owncloud
-	rsync -Aax config data /owncloud-backups/config-data
-
-### Backup the Database
-#### If you changed any of the default database information (*which you should*), you will also need to change the following.
-	cd /owncloud-backups/owncloud-db-backups/
-	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
-
----
-
-## Restoring ownCloud Backup
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
-
----
-
 ## Updating ownCloud
 ### Review Third-Party Apps
-Review any installed third-party apps for compatibility with any new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
+Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
 #### Disable via Browser
 	Go to Settings -> Admin -> Apps and disable all third-party apps.
 
@@ -139,6 +115,30 @@ Check that the version number reflects the new installation.
 It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
+
+--- 
+
+## Backing up ownCloud
+### Make a Backup Directory
+	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
+
+### Backup config and data Directories: 
+#### Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /owncloud-backups/config-data/, rsync is just one method, use whatever you like.
+	cd /var/www/html/owncloud
+	rsync -Aax config data /owncloud-backups/config-data
+
+### Backup the Database
+#### If you changed any of the default database information (*which you should*), you will also need to change the following.
+	cd /owncloud-backups/owncloud-db-backups/
+	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
+
+---
+
+## Restoring ownCloud Backup
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
 
 ---
 
