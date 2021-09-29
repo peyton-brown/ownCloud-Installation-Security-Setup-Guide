@@ -14,7 +14,7 @@ For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.
 	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
-	sudo ufw allow 'Apache Secure'
+	sudo ufw allow 'Apache Secure'; sudo ufw deny 80
 	sudo systemctl start apache2
 	sudo systemctl enable apache2
 	sudo systemctl status apache2
@@ -61,7 +61,9 @@ sudo mysql -u root -p
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/
 
 ### Updating ownCloud
-	[updating owncloud](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
+	[google]](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
+
+	[website for students](https://websiteforstudents.com/install-owncloud-using-composer-on-ubuntu-16-04-18-04-with-apache2-mariadb-and-php-7-2-support/)
 
 ### ownCloud Permissions
 	sudo chown -R www-data:www-data /var/www/owncloud/
