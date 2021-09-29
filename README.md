@@ -82,9 +82,11 @@ Simply copy your config/ and data/ folder to a place outside of your ownCloud en
 	rsync -Aax config data /owncloud-backups/config-data
 
 ### Backup the Database
-	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak -d 
+	cd /owncloud-backups/owncloud-db-backups/
+	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
+
 ---
 
 ## Restoring ownCloud Backup
@@ -119,9 +121,11 @@ Although you have already made a backup, move your current ownCloud directory to
 	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
 
-### Copy Old Configuration Files to Updated ownCloud Install
+### Copy Old Configuration Files to Updated ownCloud Install & Set Permissions
 	sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/owncloud/config/config.php
 	sudo mv /var/www/html/backup_owncloud/data /var/www/html/owncloud/data
+	sudo chown -R www-data:www-data /var/www/html/owncloud
+
 
 
 
