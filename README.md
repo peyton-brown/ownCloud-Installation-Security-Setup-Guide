@@ -55,10 +55,13 @@ sudo mysql -u root -p
 ---
 
 ## Download & Install ownCloud
-### [ownCloud Downloads](https://owncloud.com/download-server/)
+### [ownCloud Downloads](https://owncloud.com/older-versions/#server)
 	cd /tmp
-	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip 
+	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/
+
+### Updating ownCloud
+	[updating owncloud](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
 
 ### ownCloud Permissions
 	sudo chown -R www-data:www-data /var/www/owncloud/
