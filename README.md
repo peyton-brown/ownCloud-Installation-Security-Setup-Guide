@@ -121,9 +121,11 @@ Although you have already made a backup, move your current ownCloud directory to
 	cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
 
-### Copy Old Configuration Files to Updated ownCloud Install & Set Permissions
+### Copy Old Configuration Files to Updated ownCloud Install
 	sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/html/owncloud/config/config.php
 	sudo mv /var/www/html/backup_owncloud/data /var/www/html/owncloud/data
+
+### Set Permissions
 	sudo chown -R www-data:www-data /var/www/html/owncloud
 
 
