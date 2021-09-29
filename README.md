@@ -2,21 +2,19 @@
 #### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
 ---
 
-## Setup Static IP Address
+## Prerequisite Setup
+
+### Static IP Address
 For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
----
+### Update Ubuntu Packages
+	sudo apt-get update -y && sudo apt-get upgrade -y
 
-## Update Ubuntu Packages
-sudo apt-get update -y && sudo apt-get upgrade -y
-
----
-
-## Install Apache, PHP, MariaDB, and Dependencies
-sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
+### Install Apache, PHP, MariaDB, and Dependencies
+	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
 
 ### Start and Enable Apache to run on Startup
-	sudo ufw allow 'Apache Full'
+	sudo ufw allow 'Apache Secure'
 	sudo systemctl start apache2
 	sudo systemctl enable apache2
 	sudo systemctl status apache2
@@ -26,8 +24,17 @@ Follow [DigitalOcean's guide](https://www.digitalocean.com/community/tutorials/h
 
 ---
 
+## Domains
+
+### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
+Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
+
+![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
+
+---
+
 ## Run MariaDB
-sudo mysql_secure_installation
+	sudo mysql_secure_installation
 
 #### Promt Answers:
 	Set root password? [Y/n] y
@@ -60,17 +67,18 @@ sudo mysql -u root -p
 ---
 
 ## Configure Apache for ownCloud
-### Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file
-sudo vim /etc/apache2/conf-available/owncloud.conf
+
+### Disable Default Apache Configuration
+	sudo a2dissite 000-default
+
+### This file will control how users access ownCloud content. Copy the configuation code from [owncloud.conf](https://github.com/peyton-brown/ownCloud-installation-guide/blob/main/owncloud.conf) and paste into the following file. You will need to change example.com to whichever domain name you have.
+	sudo vim /etc/apache2/sites-available/owncloud.conf
+
+### Enable the new Apache Configuration
+	sudo a2ensite owncloud.conf
 
 ### Enable Required Apache Modules
-	sudo a2enconf owncloud
-	sudo a2enmod rewrite
-	sudo a2enmod headers
-	sudo a2enmod env
-	sudo a2enmod dir
-	sudo a2enmod mime
-	sudo a2enmod ssl
+	sudo a2enconf owncloud; sudo a2enmod rewrite; sudo a2enmod headers; sudo a2enmod env; sudo a2enmod dir; sudo a2enmod mime; sudo a2enmod ssl
 
 	sudo systemctl restart apache2
 
@@ -79,6 +87,9 @@ sudo vim /etc/apache2/conf-available/owncloud.conf
 ## Finalizing the ownCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
+#### Example: 
+	http://www.yourdomain.com/owncloud
+	192.168.1.254/owncloud
 Enter a Username & Password for the main adminstator
 ![username and password](https://i.imgur.com/LOKsV74.png)
 
@@ -91,9 +102,9 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## SSL / Let's Encrypt
 
-### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
+### temp header
 
-![Google Domains DNS Setup](https://i.imgur.com/bpuxroA.png)
+### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
+	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
 
 ---
