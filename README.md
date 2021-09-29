@@ -77,7 +77,7 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
 
 ### Backup config/ and data/ Directories: 
-Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /oc-backupdir. rsync is just one method, use whatever you like.
+#### Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /oc-backupdir. rsync is just one method, use whatever you like.
 	cd /var/www/html/owncloud
 	rsync -Aax config data /owncloud-backups/config-data
 
