@@ -11,10 +11,10 @@ For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.
 	sudo apt-get update -y && sudo apt-get upgrade -y
 
 ### Install Apache, PHP, MariaDB, and Dependencies
-	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server certbot curl wget -y
+	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip mariadb-server unzip smbclient openssh-server curl wget -y; sudo apt-get remove certbot -y; sudo snap install core; sudo snap refresh core; sudo snap install --classic certbot
 
 ### Start and Enable Apache to run on Startup
-	sudo ufw allow 'Apache Secure'; sudo ufw deny 80
+	sudo ufw allow 'Apache Secure'
 	sudo systemctl start apache2
 	sudo systemctl enable apache2
 	sudo systemctl status apache2
@@ -58,7 +58,7 @@ sudo mysql -u root -p
 ### [ownCloud Downloads](https://owncloud.com/older-versions/#server)
 	cd /tmp
 	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-	sudo unzip owncloud-complete-20210721.zip -d /var/www/
+	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
 
 ### Updating ownCloud
 	[google]](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
@@ -66,8 +66,8 @@ sudo mysql -u root -p
 	[website for students](https://websiteforstudents.com/install-owncloud-using-composer-on-ubuntu-16-04-18-04-with-apache2-mariadb-and-php-7-2-support/)
 
 ### ownCloud Permissions
-	sudo chown -R www-data:www-data /var/www/owncloud/
-	sudo chmod -R 755 /var/www/owncloud/
+	sudo chown -R www-data:www-data /var/www/html/owncloud/
+	sudo chmod -R 755 /var/www/html/owncloud/
 
 ---
 
@@ -89,6 +89,18 @@ sudo mysql -u root -p
 
 --- 
 
+## SSL / Let's Encrypt
+### [Certbot Install Steps](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
+
+
+### Now that Certbot is installed, run this command to receive your certificate.
+	sudo certbot --apache
+
+### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
+	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+
+---
+
 ## Finalizing the ownCloud Installation
 
 ### Go to your browser and type your IP into the address bar followed by /owncloud
@@ -102,14 +114,5 @@ Enter a Username & Password for the main adminstator
 Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
 
 ![storage and database](https://i.imgur.com/PK8ooYs.png)
-
----
-
-## SSL / Let's Encrypt
-
-### temp header
-
-### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
-	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
 
 ---
