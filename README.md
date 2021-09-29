@@ -104,7 +104,7 @@ Simply copy your config/ and data/ folder to a place outside of your ownCloud en
 	sudo service apache2 stop
 
 ### Backup ownCloud
-Follow the previous steps of backing up ownCloud [here]().
+Follow the previous steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
 
 ### Review Third-Party Apps
 Review any installed third-party apps for compatibility with any new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
