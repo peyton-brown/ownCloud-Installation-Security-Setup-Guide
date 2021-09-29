@@ -96,6 +96,11 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 ---
 
 ## Updating ownCloud
+### Review Third-Party Apps
+Review any installed third-party apps for compatibility with any new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
+#### Disable via Browser
+	Go to Settings -> Admin -> Apps and disable all third-party apps.
+
 ### Enable Maintenance Mode
 	cd /var/www/html/owncloud/
 	sudo -u www-data php occ maintenance:mode --on
@@ -105,11 +110,6 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ### Backup ownCloud
 Follow the previous steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
-
-### Review Third-Party Apps
-Review any installed third-party apps for compatibility with any new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
-#### Disable via Browser
-	Go to Settings -> Admin -> Apps and disable all third-party apps.
 
 ### Move Current ownCloud Directory
 Although you have already made a backup, move your current ownCloud directory to a different location for easy access later:
