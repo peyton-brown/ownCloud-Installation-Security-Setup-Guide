@@ -61,9 +61,9 @@ sudo mysql -u root -p
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
 
 ### Updating ownCloud
-	[google]](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
+[google]](https://www.google.com/search?q=how+to+update+owncloud+ubuntu&rlz=1C1GCEA_enUS967US967&oq=how+to+update+owncloud&aqs=chrome.0.35i39j69i57j0i22i30.2455j0j7&sourceid=chrome&ie=UTF-8)
 
-	[website for students](https://websiteforstudents.com/install-owncloud-using-composer-on-ubuntu-16-04-18-04-with-apache2-mariadb-and-php-7-2-support/)
+[website for students](https://websiteforstudents.com/install-owncloud-using-composer-on-ubuntu-16-04-18-04-with-apache2-mariadb-and-php-7-2-support/)
 
 ### ownCloud Permissions
 	sudo chown -R www-data:www-data /var/www/html/owncloud/
@@ -90,14 +90,12 @@ sudo mysql -u root -p
 --- 
 
 ## SSL / Let's Encrypt
-### [Certbot Install Steps](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
 
-
-### Now that Certbot is installed, run this command to receive your certificate.
+### Now that Certbot is installed, run this command to receive your certificate. Enter your personal information into the prompt.
 	sudo certbot --apache
 
-### If Apache2 gives the error "could not reliably determine the server’s fully qualified domain name" enter the following into the terminal.
-	echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+### Automatic Renewal
+	sudo certbot renew --dry-run
 
 ---
 
