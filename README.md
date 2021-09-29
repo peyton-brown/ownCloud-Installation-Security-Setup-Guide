@@ -122,18 +122,29 @@ Although you have already made a backup, move your current ownCloud directory to
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
 
 ### Copy Old Configuration Files to Updated ownCloud Install
-	sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/html/owncloud/config/config.php
-	sudo mv /var/www/html/backup_owncloud/data /var/www/html/owncloud/data
+	sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/html/owncloud/config/config.php; sudo cp /var/www/html/backup_owncloud/data /var/www/html/owncloud/data; sudo cp -r /var/www/html/backup_owncloud/apps/ /var/www/html/owncloud/apps/; sudo cp -r /var/www/html/backup_owncloud/apps-external/ /var/www/html/owncloud/apps-external/
 
 ### Set Permissions
 	sudo chown -R www-data:www-data /var/www/html/owncloud
 
+### Start Upgrading
+#### With the apps disabled and ownCloud in maintenance mode, start the upgrade process:
+	cd /var/www/html/owncloud
+	sudo -u www-data php occ upgrade
 
+The upgrade operation can take anywhere from a few minutes to a few hours, depending on the size of your installation. When it is finished you will see either a success message or an error message that indicates why the process did not complete successfully.
 
+### Disable Maintenance Mode
+#### Assuming your upgrade succeeded, disable maintenance mode.
+	sudo -u www-data php occ maintenance:mode --off
+	sudo service apache2 start
 
-
+### Check if the Update Applied
+Check that the version number reflects the new installation.
+It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
+
 ---
 
 ## Configure Apache for ownCloud
