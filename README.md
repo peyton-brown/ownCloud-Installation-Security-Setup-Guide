@@ -67,21 +67,16 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 ---
 
 ## Backing up ownCloud
-### When you backup your ownCloud server, there are four things that you need to copy:
-	config/ directory
-	data/ directory
-	ownCloud database
-	theme files (if applicable)
-
 ### Make a Backup Directory
 	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
 
-### Backup config/ and data/ Directories: 
-#### Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /oc-backupdir. rsync is just one method, use whatever you like.
+### Backup config and data Directories: 
+#### Simply copy your config/ and data/ folder to a place outside of your ownCloud environment. This example uses rsync to copy the two directories to /owncloud-backups/config-data/, rsync is just one method, use whatever you like.
 	cd /var/www/html/owncloud
 	rsync -Aax config data /owncloud-backups/config-data
 
 ### Backup the Database
+#### If you changed any of the default database information (*which you should*), you will also need to change the following.
 	cd /owncloud-backups/owncloud-db-backups/
 	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
 
