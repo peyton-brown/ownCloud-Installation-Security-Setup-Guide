@@ -24,7 +24,7 @@ For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.
 ## Domains
 
 #### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be left blank. This will auto-fill to *yourdomain*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important. Create a second record and follow the same previous steps; however, for the hostname, enter "www". Save when completed.
+Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be owncloud. This will set the link to *owncloud.example*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important.
 
 ![Google Domains DNS Setup](https://i.imgur.com/FhMaV0c.png)
 
@@ -44,7 +44,7 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ### Create the ownCloud Database
 	sudo mysql -u root -p
-#### Enter the following into MariaDB
+#### Enter the following into MariaDB. Make sure you change the default password from "qwe" to something else.
 	CREATE DATABASE owncloud_db;
 	GRANT ALL ON owncloud_db.* TO 'owncloud_db_user'@'localhost' IDENTIFIED BY 'qwe';
 	FLUSH PRIVILEGES;
@@ -68,7 +68,7 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 ## Updating ownCloud
 
 ### Review Third-Party Apps
-Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
+#### Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
 #### Disable via Browser
 	Go to Settings -> Admin -> Apps and disable all third-party apps.
 
@@ -78,10 +78,10 @@ Review any installed third-party apps for compatibility with all new ownCloud re
 	sudo systemctl stop apache2
 
 ### Backup ownCloud
-Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
+#### Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
 
 ### Move Current ownCloud Directory
-Although you have already made a backup, move your current ownCloud directory to a different location for easy access later:
+#### Although you have already made a backup, move your current ownCloud directory to a different location for easy access later:
 #### Move ownCloud Directory
 	sudo mv /var/www/html/owncloud /var/www/html/backup_owncloud
 
@@ -107,7 +107,7 @@ Although you have already made a backup, move your current ownCloud directory to
 	sudo service apache2 start
 
 ### Check if the Update Applied
-Check that the version number reflects the new installation.
+#### Check that the version number reflects the new installation.
 It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
