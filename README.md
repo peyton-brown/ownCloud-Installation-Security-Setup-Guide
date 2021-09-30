@@ -54,7 +54,7 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ## Download & Install ownCloud
 
-### ownCloud [Downloads](https://owncloud.com/older-versions/#server)
+### ownCloud [Download](https://owncloud.com/older-versions/#server)
 	cd /tmp
 	sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
 	sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
@@ -185,6 +185,6 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## VirtualBox Shared Folder / Local External Storage
 
-
+https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
 ---
