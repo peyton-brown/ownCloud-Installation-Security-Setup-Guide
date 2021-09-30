@@ -187,4 +187,7 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
+
+https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_storage/local.html
+
 ---
