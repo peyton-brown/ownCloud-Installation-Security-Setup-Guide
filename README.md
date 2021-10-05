@@ -164,10 +164,10 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ## SSL / Let's Encrypt
 
-### Now that Certbot is installed, run this command to receive your certificate. Enter your personal information into the prompt.
+### Run this command to receive your certificate. Enter your personal information into the prompt.
 	sudo certbot --apache
 
-### Automatic Renewal
+### Turn on Automatic Renewal with the following command.
 	sudo certbot renew --dry-run
 
 [Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
