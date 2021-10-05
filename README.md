@@ -159,6 +159,7 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste into the bottom of config.php. You should change the password in this file.
 	sudo vim /var/www/html/owncloud/config/config.php
+
 --- 
 
 ## SSL / Let's Encrypt
@@ -170,6 +171,16 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 	sudo certbot renew --dry-run
 
 [Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
+
+---
+
+## Strict Transport Security HTTP Header
+
+### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
+	sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
+
+### Paste the following Under "ServerName"
+	Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 
 ---
 
