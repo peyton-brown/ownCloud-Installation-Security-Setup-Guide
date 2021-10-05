@@ -179,7 +179,7 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 ### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
 	sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
 
-### Paste the following Under "ServerName"
+### Paste the following below "ServerName"
 	Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 
 ---
