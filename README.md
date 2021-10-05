@@ -157,7 +157,7 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ## Memory Caching / Transactional File Locking
 
-### Copy the configuation code from [redis-config]() and paste into the bottom of config.php.
+### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste into the bottom of config.php. You should change the password in this file.
 	sudo vim /var/www/html/owncloud/config/config.php
 --- 
 
