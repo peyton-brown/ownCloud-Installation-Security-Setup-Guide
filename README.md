@@ -186,9 +186,9 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ## Finalizing the ownCloud Installation
 
-### Go to your browser and type your IP into the address bar followed by /owncloud
+### Go to your browser and type your IP or DNS into the address bar followed by /owncloud
 #### Example: 
-	http://www.yourdomain.com/owncloud
+	http://owncloud.yourdomain.com/
 	192.168.1.254/owncloud
 Enter a Username & Password for the main adminstator
 ![username and password](https://i.imgur.com/LOKsV74.png)
