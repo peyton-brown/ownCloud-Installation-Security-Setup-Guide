@@ -65,6 +65,29 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 ---
 
+## Backing up ownCloud
+### Make Backup Directory
+	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
+
+### Backup config and data Directories: 
+	cd /var/www/html/owncloud
+	rsync -Aax config data /owncloud-backups/config-data
+
+### Backup the Database
+#### If you changed any of the default database information (*which you should've*), you will also need to change the following.
+	cd /owncloud-backups/owncloud-db-backups/
+	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
+
+---
+
+## Restoring ownCloud Backup
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
+
+---
+
 ## Updating ownCloud
 
 ### Review Third-Party Apps
@@ -112,29 +135,6 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
 
---- 
-
-## Backing up ownCloud
-### Make Backup Directory
-	mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
-
-### Backup config and data Directories: 
-	cd /var/www/html/owncloud
-	rsync -Aax config data /owncloud-backups/config-data
-
-### Backup the Database
-#### If you changed any of the default database information (*which you should've*), you will also need to change the following.
-	cd /owncloud-backups/owncloud-db-backups/
-	mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
-
----
-
-## Restoring ownCloud Backup
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
-
 ---
 
 ## Configure Apache for ownCloud
@@ -157,7 +157,7 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ## Memory Caching / Transactional File Locking
 
-### Copy the configuation code from [redis-config]() and paste into the bottom of config.php.
+### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste into the bottom of config.php. You should change the password in this file.
 	sudo vim /var/www/html/owncloud/config/config.php
 --- 
 
