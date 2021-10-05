@@ -11,7 +11,7 @@ For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.
 	sudo apt-get update -y && sudo apt-get upgrade -y
 
 ### Install Apache, PHP, MariaDB, and Dependencies
-	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php7.4-zip p7zip p7zip-full unrar mariadb-server mariadb-client unzip smbclient openssh-server curl wget -y; sudo apt-get remove certbot -y; sudo snap install core; sudo snap refresh core; sudo snap install --classic certbot
+	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php-redis php7.4-zip p7zip p7zip-full unrar redis-server mariadb-server mariadb-client unzip smbclient openssh-server curl wget -y; sudo apt-get remove certbot -y; sudo snap install core; sudo snap refresh core; sudo snap install --classic certbot
 
 ### Start and Enable Apache to run on Startup
 	sudo ufw allow 'Apache Secure'
@@ -153,6 +153,12 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 	sudo systemctl restart apache2
 
+---
+
+## Memory Caching / Transactional File Locking
+
+### Copy the configuation code from [redis-config]() and paste into the bottom of config.php.
+	sudo vim /var/www/html/owncloud/config/config.php
 --- 
 
 ## SSL / Let's Encrypt
@@ -189,5 +195,9 @@ https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-s
 
 
 https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_storage/local.html
+
+---
+
+## Outlook Intergration
 
 ---
