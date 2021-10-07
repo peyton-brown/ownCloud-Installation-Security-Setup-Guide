@@ -35,15 +35,13 @@ A domain will be needed for secure access outside of your network, as well as, H
 ```
 sudo mysql_secure_installation
 ```
-	Promt Answers:
-		```
-		Set root password? [Y/n] y
-			New password: pwd
-		Remove anonymous users? [Y/n] y
-		Disallow root login remotely? [Y/n] y
-		Remove test database and access to it? [Y/n] y
-		Reload privilege tables [Y/n] y
-		```
+		Promt Answers:
+			Set root password? [Y/n] y
+				New password: (any password will work)
+			Remove anonymous users? [Y/n] y
+			Disallow root login remotely? [Y/n] y
+			Remove test database and access to it? [Y/n] y
+			Reload privilege tables [Y/n] y
 
 ### Create the ownCloud Database
 	sudo mysql -u root -p
