@@ -1,46 +1,49 @@
-# ownCloud Installation Guide
-#### Detailed intructions for installing ownCloud server on Ubuntu Server 20.04
----
+# ownCloud Installation & Setup Guide
+Ubuntu Server 20.04 on VirtualBox VM
 
 ## Prerequisite Setup
 
-### Static IP Address
+### Static IP Address (If using VirtualBox, make sure Bridged Adapters are being used.)
 For steps on setting up a static ip, use [this Linuxize guide](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/#netplan).
 
 ### Update Ubuntu Packages
-	sudo apt-get update -y && sudo apt-get upgrade -y
+```
+sudo apt-get update -y && sudo apt-get upgrade -y
+```
 
-### Install Apache, PHP, MariaDB, and Dependencies
-	sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php-redis php7.4-zip p7zip p7zip-full unrar redis-server mariadb-server mariadb-client unzip smbclient openssh-server curl wget -y; sudo apt-get remove certbot -y; sudo snap install core; sudo snap refresh core; sudo snap install --classic certbot
+### Install Apache, PHP, MariaDB, and other Dependencies
+```
+sudo apt-get install apache2 libapache2-mod-php7.4 openssl php-imagick php7.4-common php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-json php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-pgsql php-ssh2 php7.4-sqlite3 php7.4-xml php-redis php7.4-zip p7zip p7zip-full unrar redis-server mariadb-server mariadb-client unzip smbclient openssh-server curl wget -y; sudo apt-get remove certbot -y; sudo snap install core; sudo snap refresh core; sudo snap install --classic certbot
+```
 
-### Start and Enable Apache to run on Startup
-	sudo ufw allow 'Apache Secure'
-	sudo systemctl start apache2
-	sudo systemctl enable apache2
-	sudo systemctl status apache2
-
----
+### Allow Port 443 Through Firewall & Start Apache on Startup
+```
+sudo ufw allow 'Apache Secure'
+sudo systemctl start apache2
+sudo systemctl enable apache2
+sudo systemctl status apache2
+```
 
 ## Domains
-
-#### A domain will be needed for access outside of your network. I use Google Domains but any provider will work. 
-Create a custom record inside of DNS. The hostname can be any name, but for most people, the first record should be owncloud. This will set the link to *owncloud.example*.com. The type ***has*** to be "A" unless you are using IPv6; in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why domains are important.
+A domain will be needed for secure access outside of your network, as well as, HTTPS. I use Google Domains but any provider will work. Create a custom record inside of "DNS". The hostname can be any name, but for most people, the first record should be "owncloud". This will set the URL to *owncloud.example*.com. The type needs to be "A" unless you are using IPv6, in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why a domain is important.
 
 ![Google Domains DNS Setup](https://i.imgur.com/FhMaV0c.png)
 
----
-
-## MariaDB
+## MariaDB for Database
 
 ### Setup MariaDB
-	sudo mysql_secure_installation
-#### Promt Answers:
+```
+sudo mysql_secure_installation
+```
+	Promt Answers:
+	```
 	Set root password? [Y/n] y
 		New password: pwd
 	Remove anonymous users? [Y/n] y
 	Disallow root login remotely? [Y/n] y
 	Remove test database and access to it? [Y/n] y
 	Reload privilege tables [Y/n] y
+	```
 
 ### Create the ownCloud Database
 	sudo mysql -u root -p
@@ -49,8 +52,6 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 	GRANT ALL ON owncloud_db.* TO 'owncloud_db_user'@'localhost' IDENTIFIED BY 'qwe';
 	FLUSH PRIVILEGES;
 	EXIT;
-
----
 
 ## Download, Install, Backup, Restore, and Upgrade ownCloud
 
@@ -62,8 +63,6 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 ### ownCloud Permissions
 	sudo chown -R www-data:www-data /var/www/html/owncloud/
 	sudo chmod -R 755 /var/www/html/owncloud/
-
----
 
 ## Backing up ownCloud
 ### Make Backup Directory
@@ -80,13 +79,9 @@ Create a custom record inside of DNS. The hostname can be any name, but for most
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
 
---
-
 ## Restoring ownCloud Backup
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
-
----
 
 ## Updating ownCloud
 
@@ -135,8 +130,6 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
 
----
-
 ## Configure Apache for ownCloud
 
 ### Disable Default Apache Configuration
@@ -153,14 +146,10 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 	sudo systemctl restart apache2
 
----
-
 ## Memory Caching / Transactional File Locking
 
 ### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste into the bottom of config.php. You should change the password in this file.
 	sudo vim /var/www/html/owncloud/config/config.php
-
---- 
 
 ## SSL / Let's Encrypt
 
@@ -172,8 +161,6 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
 
----
-
 ## Strict Transport Security HTTP Header
 
 ### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
@@ -181,8 +168,6 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 ### Paste the following below "ServerName"
 	Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
-
----
 
 ## Finalizing the ownCloud Installation
 
@@ -198,16 +183,12 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ![storage and database](https://i.imgur.com/PK8ooYs.png)
 
----
-
 ## VirtualBox Shared Folder / Local External Storage
 
 https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
 
 https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_storage/local.html
-
----
 
 ## Outlook Intergration
 
