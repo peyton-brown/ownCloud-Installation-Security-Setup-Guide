@@ -241,7 +241,10 @@ https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_s
 
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
-This plugin is free for the first 30 days, after that you can purchase the plugin [here](https://oc.oem-cloud.com/en/owncloud-outlook-plugin-annual-license). Click English at the top, then select "Product-License". Choose which plan you would like and click Next. Enter your domain name below "1-Year Subscription per User", for example, https://owncloud.example.com. **Note: This is the price for each email address conntected to the plugin. If you add a different email address, it will charge you the same amount as the first license (e.g. €10,00 / Year).**
+This plugin is free for the first 30 days, after that you can purchase a license [here](https://oc.oem-cloud.com/en/owncloud-outlook-plugin-annual-license). 
+```
+Click English at the top, then select "Product-License". Choose which plan you would like and click Next. Enter your domain name below "1-Year Subscription per User", for example, https://owncloud.example.com. **Note: This is the price for each email address conntected to the plugin. If you add a different email address, it will charge you the same amount as the first license (e.g. €10,00 / Year).**
+```
 
 Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is required to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
 ```
