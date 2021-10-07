@@ -34,6 +34,7 @@ A domain will be needed for secure access outside of your network, as well as, H
 ### Setup MariaDB
 ```
 sudo mysql_secure_installation
+
 	Set root password? [Y/n] y
 		New password: (any password will work)
 	Remove anonymous users? [Y/n] y
