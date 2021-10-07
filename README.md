@@ -152,7 +152,10 @@ sudo service apache2 start
 ```
 
 ### Check if the Update Applied
-Check that the version number reflects the new installation. It can be reviewed at the bottom of Settings -> Admin -> General.
+Check that the version number reflects the new installation. 
+```
+It can be reviewed at the bottom of Settings -> Admin -> General.
+```
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
 
