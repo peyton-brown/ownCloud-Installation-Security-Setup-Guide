@@ -233,7 +233,7 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ![storage and database](https://i.imgur.com/PK8ooYs.png)
 
-## VirtualBox Shared Folder / Local External Storage
+## Local External Storage / VirtualBox Shared Folder
 
 https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
