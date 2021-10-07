@@ -241,6 +241,14 @@ https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_s
 
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
+Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is required to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
+```
+Click "Download the Outlook plugin" -> ownCloud - Microsoft Outlook AddIn -> Click the three dots next to "Office 2013 - 2016 - 2019 - O365" -> Download -> Save the zip folder
+Once the "Office 2013 - 2016 - 2019 - O365.zip" folder is downloaded, extract the zip. Once done, run the .exe file and follow the prompts to install the Outlook plugin. Once finished, restart Outlook.
+```
+
+Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings" and follow the prompts. You will need to have DNS and HTTPS setup for this to work, if you do not have this, follow [Domain/DNS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#domains) and/or [SSL/HTTPS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#ssl--lets-encrypt). Once both are compeleted, enter your URL and click next.Select your type of authentication or if you just have none, select "Username and Password". Once signed-in you will need to restart Outlook for the changes to take effect. From here, you can change the settings to whatever you like including templates, share settings, and share duration. You can send a test email to yourself by either dragging and droping a file as an attachment or by clicking "Create Upload-Link". The ladder is preferable as you can change the settings individually rather than leaving it to the defaults.
+
 This plugin is free for the first 30 days, after that you can purchase a license [here](https://oc.oem-cloud.com/en/owncloud-outlook-plugin-annual-license). 
 ```
 Click English at the top
@@ -250,11 +258,3 @@ Enter your domain name below "1-Year Subscription per User", for example, https:
 
 Note: This is the price for each email address conntected to the plugin. If you add a different email address, it will charge you the same amount as the first license (e.g. €10,00 / Year).
 ```
-
-Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is required to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
-```
-Click "Download the Outlook plugin" -> ownCloud - Microsoft Outlook AddIn -> Click the three dots next to "Office 2013 - 2016 - 2019 - O365" -> Download -> Save the zip folder
-Once the "Office 2013 - 2016 - 2019 - O365.zip" folder is downloaded, extract the zip. Once done, run the .exe file and follow the prompts to install the Outlook plugin. Once finished, restart Outlook.
-```
-
-Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings" and follow the prompts. You will need to have DNS and HTTPS setup for this to work, if you do not have this, follow [Domain/DNS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#domains) and/or [SSL/HTTPS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#ssl--lets-encrypt). Once both are compeleted, enter your URL and click next.Select your type of authentication or if you just have none, select "Username and Password". Once signed-in you will need to restart Outlook for the changes to take effect. From here, you can change the settings to whatever you like including templates, share settings, and share duration. You can send a test email to yourself by either dragging and droping a file as an attachment or by clicking "Create Upload-Link". The ladder is preferable as you can change the settings individually rather than leaving it to the defaults.
