@@ -25,7 +25,7 @@ sudo systemctl status apache2
 ```
 
 ## Domains
-A domain will be needed for secure access outside of your network, as well as, HTTPS. I use Google Domains but any provider will work. Create a custom record inside of "DNS". The hostname can be any name, but for most people, the first record should be "owncloud". This will set the URL to *owncloud.example*.com. The type needs to be "A" unless you are using IPv6, in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not your local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why a domain is important.
+A domain will be needed for secure access outside of your network, as well as, HTTPS. I use Google Domains but any provider will work. Create a custom record inside of "DNS". The hostname can be any name, but for most people, the first record should be "owncloud". This will set the URL to *owncloud.example*.com. The type needs to be "A" unless you are using IPv6, in that case use "AAAA". The TTL default of "3600" is fine. For Data, enter your public IPv4 address, ***not the local Ubuntu-Server IP address***. If using IPv6, enter that instead. Do not give your public IP address to anyone you do not trust. This is why a domain is important.
 
 ![Google Domains DNS Setup](https://i.imgur.com/FhMaV0c.png)
 
@@ -36,14 +36,14 @@ A domain will be needed for secure access outside of your network, as well as, H
 sudo mysql_secure_installation
 ```
 	Promt Answers:
-	```
-	Set root password? [Y/n] y
-		New password: pwd
-	Remove anonymous users? [Y/n] y
-	Disallow root login remotely? [Y/n] y
-	Remove test database and access to it? [Y/n] y
-	Reload privilege tables [Y/n] y
-	```
+		```
+		Set root password? [Y/n] y
+			New password: pwd
+		Remove anonymous users? [Y/n] y
+		Disallow root login remotely? [Y/n] y
+		Remove test database and access to it? [Y/n] y
+		Reload privilege tables [Y/n] y
+		```
 
 ### Create the ownCloud Database
 	sudo mysql -u root -p
