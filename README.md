@@ -241,10 +241,16 @@ https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_s
 
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
-Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is required to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
+Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is needed to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
 ```
-Click "Download the Outlook plugin" -> ownCloud - Microsoft Outlook AddIn -> Click the three dots next to "Office 2013 - 2016 - 2019 - O365" -> Download -> Save the zip folder
-Once the "Office 2013 - 2016 - 2019 - O365.zip" folder is downloaded, extract the zip. Once done, run the .exe file and follow the prompts to install the Outlook plugin. Once finished, restart Outlook.
+Click "Download the Outlook plugin"
+Click ownCloud - Microsoft Outlook AddIn
+Click the three dots next to "Office 2013 - 2016 - 2019 - O365" and select "Download" 
+Save the zip folder
+Extract the zip file.
+Run the .exe file and follow the prompts to install the Outlook plugin
+
+Once finished, restart Outlook.
 ```
 
 Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings" and follow the prompts. You will need to have DNS and HTTPS setup for this to work, if you do not have this, follow [Domain/DNS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#domains) and/or [SSL/HTTPS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#ssl--lets-encrypt). Once both are compeleted, enter your URL and click next.Select your type of authentication or if you just have none, select "Username and Password". Once signed-in you will need to restart Outlook for the changes to take effect. From here, you can change the settings to whatever you like including templates, share settings, and share duration. You can send a test email to yourself by either dragging and droping a file as an attachment or by clicking "Create Upload-Link". The ladder is preferable as you can change the settings individually rather than leaving it to the defaults.
