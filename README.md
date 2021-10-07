@@ -241,8 +241,10 @@ https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_s
 
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
-Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is needed to get the plugin to work. You can find the download for the plugin under "How is the Outlook plugin installed?". 		
+Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is needed to get the plugin to work.
 ```
+You can find the download for the plugin under "How is the Outlook plugin installed?". 		
+
 Click "Download the Outlook plugin"
 Click ownCloud - Microsoft Outlook AddIn
 Click the three dots next to "Office 2013 - 2016 - 2019 - O365" and select "Download" 
