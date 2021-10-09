@@ -88,7 +88,7 @@ rsync -Aax config data /owncloud-backups/config-data
 If you changed any of the default database information (*which you should've*), you will also need to change the following.
 ```
 cd /owncloud-backups/owncloud-db-backups/
-mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
+mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-db-backup_`date +"%Y-%m-%d"`.bak
 ```
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
@@ -234,10 +234,25 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 ![storage and database](https://i.imgur.com/PK8ooYs.png)
 
 ## Useful Market Apps
-
-Market apps I personally use:
 ```
-
+2-Factor Authentication
+Activity
+Announcement Center
+Calendar
+Contacts
+Custom Groups
+E2EE File Sharing
+Extract
+Files clipboard
+Gallery
+Impersonate
+Music
+Password Policy
+PDF Viewer
+Text Editor
+Text File Viewer
+Two factor backup codes
+Wallpaper 
 ```
 
 ## Local External Storage / VirtualBox Shared Folder
