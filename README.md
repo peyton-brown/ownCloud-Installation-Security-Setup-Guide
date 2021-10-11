@@ -235,7 +235,11 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## Useful Market Apps
 ```
-2-Factor Authentication
+--- DO NOT USE IF OUTLOOK PLUGIN IS INSTALLED
+	2-Factor Authentication  
+	Two factor backup codes
+---
+
 Activity
 Announcement Center
 Calendar
@@ -251,7 +255,6 @@ Password Policy
 PDF Viewer
 Text Editor
 Text File Viewer
-Two factor backup codes
 Wallpaper 
 ```
 
