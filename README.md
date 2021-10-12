@@ -242,6 +242,7 @@ sudo systemctl stop apache2
 ### Backup ownCloud Directories
 Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
 
+
 ### Move Current ownCloud Directory
 ```
 sudo mv /var/www/owncloud /var/www/backup_owncloud
@@ -301,6 +302,7 @@ https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_s
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
 Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is needed to get the plugin to work.
+
 ```
 You can find the download for the plugin under "How is the Outlook plugin installed?". 		
 
@@ -312,13 +314,14 @@ Extract the zip file.
 Run the .exe file and follow the prompts to install the Outlook plugin
 
 Once finished, restart Outlook.
-
 ```
+
 Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings" and follow the prompts. You will need to have DNS and HTTPS setup for this to work, if you do not have this, follow [Domain/DNS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#domains) and/or [SSL/HTTPS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#ssl--lets-encrypt). Once both are compeleted, enter your URL and click next. Select your type of authentication or if you just have none, select "Username and Password". Once signed-in you will need to restart Outlook for the changes to take effect. 
 
 From here, you can change the settings to include templates, share settings, and share duration defaults. To test if the plugin is working, email yourself with an attachment. You can either drag and drope a file or by clicking "Create Upload-Link". The ladder is preferable as you can change settings (like share duration) individually rather than leaving it to the defaults.
 
 This plugin is free for the first 30 days, after that you can purchase a license [here](https://oc.oem-cloud.com/en/owncloud-outlook-plugin-annual-license). 
+
 ```
 Click English at the top
 Select "Product-License"
