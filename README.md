@@ -95,24 +95,6 @@ sudo a2enconf owncloud; sudo a2enmod rewrite; sudo a2enmod headers; sudo a2enmod
 sudo systemctl restart apache2
 ```
 
-## Memory Caching / Transactional File Locking
-
-### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste at the bottom of config.php. You should change the password in this file.
-```
-sudo vim /var/www/owncloud/config/config.php
-```
-
-## Strict Transport Security HTTP Header
-
-### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
-```
-sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
-```
-
-### Paste the following below "ServerName"
-```
-Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
-```
 
 ## SSL / Let's Encrypt
 
@@ -165,6 +147,28 @@ Enter a Username & Password for the main adminstator
 Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
 
 ![storage and database](https://i.imgur.com/PK8ooYs.png)
+
+
+## Memory Caching / Transactional File Locking
+
+### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste at the bottom of config.php. You should change the password in this file.
+```
+sudo vim /var/www/owncloud/config/config.php
+```
+
+
+## Strict Transport Security HTTP Header
+
+### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
+```
+sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
+```
+
+### Paste the following below "ServerName"
+```
+Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
+```
+
 
 ## Useful Market Apps
 ```
