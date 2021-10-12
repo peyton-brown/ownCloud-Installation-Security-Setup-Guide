@@ -62,13 +62,13 @@ EXIT;
 ```
 cd /tmp
 sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
+sudo unzip owncloud-complete-20210721.zip -d /var/www/
 ```
 
 ### ownCloud Permissions
 ```
-sudo chown -R www-data:www-data /var/www/html/owncloud/
-sudo chmod -R 755 /var/www/html/owncloud/
+sudo chown -R www-data:www-data /var/www/owncloud/
+sudo chmod -R 755 /var/www/owncloud/
 ```
 
 ## Backing up ownCloud
@@ -80,7 +80,7 @@ mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/confi
 
 ### Backup Config & Data Folders
 ```
-cd /var/www/html/owncloud
+cd /var/www/owncloud
 rsync -Aax config data /owncloud-backups/config-data
 ```
 
@@ -107,7 +107,7 @@ Go to Settings -> Admin -> Apps and disable all third-party apps.
 
 ### Enable Maintenance Mode
 ```
-cd /var/www/html/owncloud/
+cd /var/www/owncloud/
 sudo -u www-data php occ maintenance:mode --on
 sudo systemctl stop apache2
 ```
@@ -117,29 +117,29 @@ Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown
 
 ### Move Current ownCloud Directory
 ```
-sudo mv /var/www/html/owncloud /var/www/html/backup_owncloud
+sudo mv /var/www/owncloud /var/www/backup_owncloud
 ```
 
 ### Download Latest Version
-Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/hmtl/). Replace the following url and zip name with the newest version at the time of reading.
+Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/). Replace the following url and zip name with the newest version at the time of reading.
 ```
 cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
+sudo unzip owncloud-complete-20210721.zip -d /var/www/
 ```
 
 ### Copy the Old Configuration Files to the Updated ownCloud Download
 ```
-sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/html/owncloud/config/config.php; sudo cp /var/www/html/backup_owncloud/data /var/www/html/owncloud/data; sudo cp -r /var/www/html/backup_owncloud/apps/ /var/www/html/owncloud/apps/; sudo cp -r /var/www/html/backup_owncloud/apps-external/ /var/www/html/owncloud/apps-external/
+sudo cp /var/www/backup_owncloud/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/backup_owncloud/data /var/www/owncloud/data; sudo cp -r /var/www/backup_owncloud/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/backup_owncloud/apps-external/ /var/www/owncloud/apps-external/
 ```
 
 ### Set Permissions
 ```
-sudo chown -R www-data:www-data /var/www/html/owncloud
+sudo chown -R www-data:www-data /var/www/owncloud
 ```
 
 ### Start the Upgrade Process
 ```
-cd /var/www/html/owncloud
+cd /var/www/owncloud
 sudo -u www-data php occ upgrade
 ```
 
@@ -187,7 +187,7 @@ sudo systemctl restart apache2
 
 ### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste at the bottom of config.php. You should change the password in this file.
 ```
-sudo vim /var/www/html/owncloud/config/config.php
+sudo vim /var/www/owncloud/config/config.php
 ```
 
 ## SSL / Let's Encrypt
