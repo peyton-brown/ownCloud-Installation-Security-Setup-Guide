@@ -71,9 +71,9 @@ sudo chown -R www-data:www-data /var/www/owncloud/
 sudo chmod -R 755 /var/www/owncloud/
 ```
 
-## Configure Apache for ownCloud
+## Apache Configuration 
 
-### Disable Default Apache Configuration
+### Disable the Default Apache Configuration
 ```
 sudo a2dissite 000-default
 ```
@@ -123,8 +123,10 @@ sudo certbot --apache
 	Enter email address (used for urgent renewal and security notices)
  		(Enter 'c' to cancel): (YOUR EMAIL)
 
+
 	Please read the Terms of Service at https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must agree in order to register with the ACME server. Do you agree?
 		(Y)es/(N)o: y
+
 
 	Would you be willing, once your first certificate is successfully issued, to
 	share your email address with the Electronic Frontier Foundation, a founding
@@ -132,6 +134,7 @@ sudo certbot --apache
 	develops Certbot? We'd like to send you email about our work encrypting the web,
 	EFF news, campaigns, and ways to support digital freedom.
 		(Y)es/(N)o: y
+
 
 	Which names would you like to activate HTTPS for?
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -149,11 +152,10 @@ sudo certbot renew --dry-run; sudo systemctl restart apache2
 
 ## Finalizing the ownCloud Installation
 
-### Go to your browser and type your IP or DNS into the address bar followed by /owncloud
+### Go to a Browser and Type URL into the Address Bar
 ```
 Example: 
-	http://owncloud.yourdomain.com/
-	192.168.1.254/owncloud
+	https://owncloud.example.com/
 ```
 
 Enter a Username & Password for the main adminstator
@@ -166,11 +168,6 @@ Select "Storage & database", select "MySQL/MariaDB", fill in the information, an
 
 ## Useful Market Apps
 ```
---- DO NOT USE IF OUTLOOK PLUGIN IS INSTALLED
-	2-Factor Authentication  
-	Two factor backup codes
----
-
 Activity
 Announcement Center
 Calendar
@@ -187,7 +184,15 @@ PDF Viewer
 Text Editor
 Text File Viewer
 Wallpaper 
+
+--- 
+	DO NOT USE IF OUTLOOK PLUGIN IS OR WILL BE INSTALLED
+		2-Factor Authentication  
+		Two factor backup codes
+---
+
 ```
+
 
 ## Backing up ownCloud
 
@@ -211,9 +216,13 @@ mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
 
+
 ## Restoring ownCloud Backup
 
+Needs to be added
+
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
+
 
 ## Updating ownCloud
 
@@ -277,12 +286,15 @@ It can be reviewed at the bottom of Settings -> Admin -> General.
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
 
+
 ## Local External Storage / VirtualBox Shared Folder
+
+Needs to be added
 
 https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
-
 https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_storage/local.html
+
 
 ## Outlook Intergration
 
@@ -300,8 +312,8 @@ Extract the zip file.
 Run the .exe file and follow the prompts to install the Outlook plugin
 
 Once finished, restart Outlook.
-```
 
+```
 Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings" and follow the prompts. You will need to have DNS and HTTPS setup for this to work, if you do not have this, follow [Domain/DNS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#domains) and/or [SSL/HTTPS Setup](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/tree/production#ssl--lets-encrypt). Once both are compeleted, enter your URL and click next. Select your type of authentication or if you just have none, select "Username and Password". Once signed-in you will need to restart Outlook for the changes to take effect. 
 
 From here, you can change the settings to include templates, share settings, and share duration defaults. To test if the plugin is working, email yourself with an attachment. You can either drag and drope a file or by clicking "Create Upload-Link". The ladder is preferable as you can change settings (like share duration) individually rather than leaving it to the defaults.
