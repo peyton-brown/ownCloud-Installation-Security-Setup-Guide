@@ -71,94 +71,6 @@ sudo chown -R www-data:www-data /var/www/owncloud/
 sudo chmod -R 755 /var/www/owncloud/
 ```
 
-## Backing up ownCloud
-
-### Make Backup Directory for DB & Config Files
-```
-mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
-```
-
-### Backup Config & Data Folders
-```
-cd /var/www/owncloud
-rsync -Aax config data /owncloud-backups/config-data
-```
-
-### Database Backup
-If you changed any of the default database information (*which you should've*), you will also need to change the following.
-```
-cd /owncloud-backups/owncloud-db-backups/
-mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-db-backup_`date +"%Y-%m-%d"`.bak
-```
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
-
-## Restoring ownCloud Backup
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
-
-## Updating ownCloud
-
-### Review & Disable Third-Party Apps via Browser 
-Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
-```
-Go to Settings -> Admin -> Apps and disable all third-party apps.
-```
-
-### Enable Maintenance Mode
-```
-cd /var/www/owncloud/
-sudo -u www-data php occ maintenance:mode --on
-sudo systemctl stop apache2
-```
-
-### Backup ownCloud Directories
-Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
-
-### Move Current ownCloud Directory
-```
-sudo mv /var/www/owncloud /var/www/backup_owncloud
-```
-
-### Download Latest Version
-Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/). Replace the following url and zip name with the newest version at the time of reading.
-```
-cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-sudo unzip owncloud-complete-20210721.zip -d /var/www/
-```
-
-### Copy the Old Configuration Files to the Updated ownCloud Download
-```
-sudo cp /var/www/backup_owncloud/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/backup_owncloud/data /var/www/owncloud/data; sudo cp -r /var/www/backup_owncloud/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/backup_owncloud/apps-external/ /var/www/owncloud/apps-external/
-```
-
-### Set Permissions
-```
-sudo chown -R www-data:www-data /var/www/owncloud
-```
-
-### Start the Upgrade Process
-```
-cd /var/www/owncloud
-sudo -u www-data php occ upgrade
-```
-
-The upgrade can take anywhere from a few seconds to a few minutes, depending on the size of your installation. When it is finished you will see either a success message or an error message that indicates why the update did not complete.
-
-### Assuming your upgrade succeeded, disable maintenance mode.
-```
-sudo -u www-data php occ maintenance:mode --off
-sudo service apache2 start
-```
-
-### Check if the Update Applied
-Check that the version number reflects the new installation. 
-```
-It can be reviewed at the bottom of Settings -> Admin -> General.
-```
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
-
 ## Configure Apache for ownCloud
 
 ### Disable Default Apache Configuration
@@ -257,6 +169,94 @@ Text Editor
 Text File Viewer
 Wallpaper 
 ```
+
+## Backing up ownCloud
+
+### Make Backup Directory for DB & Config Files
+```
+mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
+```
+
+### Backup Config & Data Folders
+```
+cd /var/www/owncloud
+rsync -Aax config data /owncloud-backups/config-data
+```
+
+### Database Backup
+If you changed any of the default database information (*which you should've*), you will also need to change the following.
+```
+cd /owncloud-backups/owncloud-db-backups/
+mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-db-backup_`date +"%Y-%m-%d"`.bak
+```
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
+
+## Restoring ownCloud Backup
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
+
+## Updating ownCloud
+
+### Review & Disable Third-Party Apps via Browser 
+Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
+```
+Go to Settings -> Admin -> Apps and disable all third-party apps.
+```
+
+### Enable Maintenance Mode
+```
+cd /var/www/owncloud/
+sudo -u www-data php occ maintenance:mode --on
+sudo systemctl stop apache2
+```
+
+### Backup ownCloud Directories
+Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
+
+### Move Current ownCloud Directory
+```
+sudo mv /var/www/owncloud /var/www/backup_owncloud
+```
+
+### Download Latest Version
+Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/). Replace the following url and zip name with the newest version at the time of reading.
+```
+cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
+sudo unzip owncloud-complete-20210721.zip -d /var/www/
+```
+
+### Copy the Old Configuration Files to the Updated ownCloud Download
+```
+sudo cp /var/www/backup_owncloud/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/backup_owncloud/data /var/www/owncloud/data; sudo cp -r /var/www/backup_owncloud/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/backup_owncloud/apps-external/ /var/www/owncloud/apps-external/
+```
+
+### Set Permissions
+```
+sudo chown -R www-data:www-data /var/www/owncloud
+```
+
+### Start the Upgrade Process
+```
+cd /var/www/owncloud
+sudo -u www-data php occ upgrade
+```
+
+The upgrade can take anywhere from a few seconds to a few minutes, depending on the size of your installation. When it is finished you will see either a success message or an error message that indicates why the update did not complete.
+
+### Assuming your upgrade succeeded, disable maintenance mode.
+```
+sudo -u www-data php occ maintenance:mode --off
+sudo service apache2 start
+```
+
+### Check if the Update Applied
+Check that the version number reflects the new installation. 
+```
+It can be reviewed at the bottom of Settings -> Admin -> General.
+```
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
 
 ## Local External Storage / VirtualBox Shared Folder
 
