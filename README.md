@@ -102,20 +102,6 @@ sudo systemctl restart apache2
 sudo vim /var/www/owncloud/config/config.php
 ```
 
-## SSL / Let's Encrypt
-
-### Run this command to receive your certificate. Enter your personal information into the prompt.
-```
-sudo certbot --apache
-```
-
-### Turn on Automatic Renewal with the following command.
-```
-sudo certbot renew --dry-run
-```
-
-[Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
-
 ## Strict Transport Security HTTP Header
 
 ### Access the SSL.conf file. This should be named owncloud-ssl.conf or owncloud-le-ssl.conf
@@ -127,6 +113,39 @@ sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
 ```
 Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 ```
+
+## SSL / Let's Encrypt
+
+### Run this command to receive your certificate. Enter your personal information into the prompt.
+```
+sudo certbot --apache
+
+	Enter email address (used for urgent renewal and security notices)
+ 		(Enter 'c' to cancel): (YOUR EMAIL)
+
+	Please read the Terms of Service at https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must agree in order to register with the ACME server. Do you agree?
+		(Y)es/(N)o: y
+
+	Would you be willing, once your first certificate is successfully issued, to
+	share your email address with the Electronic Frontier Foundation, a founding
+	partner of the Let's Encrypt project and the non-profit organization that
+	develops Certbot? We'd like to send you email about our work encrypting the web,
+	EFF news, campaigns, and ways to support digital freedom.
+		(Y)es/(N)o: y
+
+	Which names would you like to activate HTTPS for?
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	1: owncloud.example.com
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		Select the appropriate numbers separated by commas and/or spaces, or leave input blank to select all options shown (Enter 'c' to cancel): 1
+```
+
+### Turn on Automatic Renewal with the following command.
+```
+sudo certbot renew --dry-run; sudo systemctl restart apache2
+```
+
+[Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
 
 ## Finalizing the ownCloud Installation
 
