@@ -266,9 +266,9 @@ sudo unzip owncloud-complete-20210721.zip -d /var/www/
 
 ### Copy the Old Configuration Files to the Updated ownCloud Download
 ```
-sudo cp /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php
+sudo cp -r /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php
 
-sudo cp /var/www/owncloud_backup/data /var/www/owncloud/data
+sudo cp -r /var/www/owncloud_backup/data /var/www/owncloud/data
 
 sudo cp -r /var/www/owncloud_backup/apps/ /var/www/owncloud/apps/
 
@@ -297,7 +297,7 @@ sudo service apache2 start
 ### Check if the Update Applied
 Check that the version number reflects the new installation. 
 ```
-It can be reviewed at the bottom of Settings -> Admin -> General.
+Settings -> Admin -> General.
 ```
 
 [Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
