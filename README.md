@@ -169,6 +169,11 @@ sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
 Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 ```
 
+### Restart Apache
+```
+sudo systemctl restart apache2
+```
+
 
 ## Useful Market Apps
 ```
@@ -202,7 +207,7 @@ Wallpaper
 
 ### Make Backup Directory for DB & Config Files
 ```
-mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
+mkdir -p /backups/owncloud/db-backups; mkdir -p /backups/owncloud/config-data
 ```
 
 ### Backup Config & Data Folders
