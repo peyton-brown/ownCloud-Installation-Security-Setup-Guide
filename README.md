@@ -266,7 +266,13 @@ sudo unzip owncloud-complete-20210721.zip -d /var/www/
 
 ### Copy the Old Configuration Files to the Updated ownCloud Download
 ```
-sudo cp /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/owncloud_backup/data /var/www/owncloud/data; sudo cp -r /var/www/owncloud_backup/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/owncloud_backup/apps-external/ /var/www/owncloud/apps-external/
+sudo cp /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php
+
+sudo cp /var/www/owncloud_backup/data /var/www/owncloud/data
+
+sudo cp -r /var/www/owncloud_backup/apps/ /var/www/owncloud/apps/
+
+sudo cp -r /var/www/owncloud_backup/apps-external/ /var/www/owncloud/apps-external/
 ```
 
 ### Set Permissions
