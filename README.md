@@ -254,7 +254,7 @@ Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown
 
 ### Move Current ownCloud Directory
 ```
-sudo mv /var/www/owncloud /var/www/backup_owncloud
+sudo mv /var/www/owncloud /var/www/owncloud_backup
 ```
 
 ### Download Latest Version
@@ -266,7 +266,7 @@ sudo unzip owncloud-complete-20210721.zip -d /var/www/
 
 ### Copy the Old Configuration Files to the Updated ownCloud Download
 ```
-sudo cp /var/www/backup_owncloud/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/backup_owncloud/data /var/www/owncloud/data; sudo cp -r /var/www/backup_owncloud/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/backup_owncloud/apps-external/ /var/www/owncloud/apps-external/
+sudo cp /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php; sudo cp /var/www/owncloud_backup/data /var/www/owncloud/data; sudo cp -r /var/www/owncloud_backup/apps/ /var/www/owncloud/apps/; sudo cp -r /var/www/owncloud_backup/apps-external/ /var/www/owncloud/apps-external/
 ```
 
 ### Set Permissions
