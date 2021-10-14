@@ -213,13 +213,13 @@ mkdir -p /backups/owncloud/db-backups; mkdir -p /backups/owncloud/config-data
 ### Backup Config & Data Folders
 ```
 cd /var/www/owncloud
-rsync -Aax config data /owncloud-backups/config-data
+rsync -Aax config data /backups/owncloud/config-data
 ```
 
 ### Database Backup
 If you changed any of the default database information (*which you should've*), you will also need to change the following.
 ```
-cd /owncloud-backups/owncloud-db-backups/
+cd /backups/owncloud/db-backups
 mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-db-backup_`date +"%Y-%m-%d"`.bak
 ```
 
