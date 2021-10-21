@@ -62,103 +62,18 @@ EXIT;
 ```
 cd /tmp
 sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
+sudo unzip owncloud-complete-20210721.zip -d /var/www/
 ```
 
 ### ownCloud Permissions
 ```
-sudo chown -R www-data:www-data /var/www/html/owncloud/
-sudo chmod -R 755 /var/www/html/owncloud/
+sudo chown -R www-data:www-data /var/www/owncloud/
+sudo chmod -R 755 /var/www/owncloud/
 ```
 
-## Backing up ownCloud
+## Apache Configuration 
 
-### Make Backup Directory for DB & Config Files
-```
-mkdir -p /owncloud-backups/owncloud-db-backups; mkdir -p /owncloud-backups/config-data
-```
-
-### Backup Config & Data Folders
-```
-cd /var/www/html/owncloud
-rsync -Aax config data /owncloud-backups/config-data
-```
-
-### Database Backup
-If you changed any of the default database information (*which you should've*), you will also need to change the following.
-```
-cd /owncloud-backups/owncloud-db-backups/
-mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-dbbackup_`date +"%Y%m%d"`.bak
-```
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
-
-## Restoring ownCloud Backup
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
-
-## Updating ownCloud
-
-### Review & Disable Third-Party Apps via Browser 
-Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
-```
-Go to Settings -> Admin -> Apps and disable all third-party apps.
-```
-
-### Enable Maintenance Mode
-```
-cd /var/www/html/owncloud/
-sudo -u www-data php occ maintenance:mode --on
-sudo systemctl stop apache2
-```
-
-### Backup ownCloud Directories
-Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
-
-### Move Current ownCloud Directory
-```
-sudo mv /var/www/html/owncloud /var/www/html/backup_owncloud
-```
-
-### Download Latest Version
-Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/hmtl/). Replace the following url and zip name with the newest version at the time of reading.
-```
-cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
-sudo unzip owncloud-complete-20210721.zip -d /var/www/html/
-```
-
-### Copy the Old Configuration Files to the Updated ownCloud Download
-```
-sudo cp /var/www/html/backup_owncloud/config/config.php /var/www/html/owncloud/config/config.php; sudo cp /var/www/html/backup_owncloud/data /var/www/html/owncloud/data; sudo cp -r /var/www/html/backup_owncloud/apps/ /var/www/html/owncloud/apps/; sudo cp -r /var/www/html/backup_owncloud/apps-external/ /var/www/html/owncloud/apps-external/
-```
-
-### Set Permissions
-```
-sudo chown -R www-data:www-data /var/www/html/owncloud
-```
-
-### Start the Upgrade Process
-```
-cd /var/www/html/owncloud
-sudo -u www-data php occ upgrade
-```
-
-The upgrade can take anywhere from a few seconds to a few minutes, depending on the size of your installation. When it is finished you will see either a success message or an error message that indicates why the update did not complete.
-
-### Assuming your upgrade succeeded, disable maintenance mode.
-```
-sudo -u www-data php occ maintenance:mode --off
-sudo service apache2 start
-```
-
-### Check if the Update Applied
-Check that the version number reflects the new installation. It can be reviewed at the bottom of Settings -> Admin -> General.
-
-[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
-
-## Configure Apache for ownCloud
-
-### Disable Default Apache Configuration
+### Disable the Default Apache Configuration
 ```
 sudo a2dissite 000-default
 ```
@@ -180,26 +95,67 @@ sudo a2enconf owncloud; sudo a2enmod rewrite; sudo a2enmod headers; sudo a2enmod
 sudo systemctl restart apache2
 ```
 
-## Memory Caching / Transactional File Locking
-
-### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste at the bottom of config.php. You should change the password in this file.
-```
-sudo vim /var/www/html/owncloud/config/config.php
-```
 
 ## SSL / Let's Encrypt
 
 ### Run this command to receive your certificate. Enter your personal information into the prompt.
 ```
 sudo certbot --apache
+
+	Enter email address (used for urgent renewal and security notices)
+ 		(Enter 'c' to cancel): (YOUR EMAIL)
+
+
+	Please read the Terms of Service at https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must agree in order to register with the ACME server. Do you agree?
+		(Y)es/(N)o: y
+
+
+	Would you be willing, once your first certificate is successfully issued, to
+	share your email address with the Electronic Frontier Foundation, a founding
+	partner of the Let's Encrypt project and the non-profit organization that
+	develops Certbot? We'd like to send you email about our work encrypting the web,
+	EFF news, campaigns, and ways to support digital freedom.
+		(Y)es/(N)o: y
+
+
+	Which names would you like to activate HTTPS for?
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	1: owncloud.example.com
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		Select the appropriate numbers separated by commas and/or spaces, or leave input blank to select all options shown (Enter 'c' to cancel): 1
 ```
 
 ### Turn on Automatic Renewal with the following command.
 ```
-sudo certbot renew --dry-run
+sudo certbot renew --dry-run; sudo systemctl restart apache2
 ```
 
 [Source](https://certbot.eff.org/lets-encrypt/ubuntufocal-apache)
+
+## Finalizing the ownCloud Installation
+
+### Go to a Browser and Type URL into the Address Bar
+```
+Example: 
+	https://owncloud.example.com/
+```
+
+Enter a Username & Password for the main adminstator
+![username and password](https://i.imgur.com/LOKsV74.png)
+
+
+Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
+
+![storage and database](https://i.imgur.com/PK8ooYs.png)
+
+
+## Memory Caching / Transactional File Locking
+
+### Copy the configuation code from [redis-config](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide/blob/main/redis-config) and paste at the bottom of config.php. You should change the password in this file.
+```
+sudo vim /var/www/owncloud/config/config.php
+```
+
 
 ## Strict Transport Security HTTP Header
 
@@ -213,35 +169,155 @@ sudo vim /etc/apache2/sites-available/owncloud-le-ssl.conf
 Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 ```
 
-## Finalizing the ownCloud Installation
-
-### Go to your browser and type your IP or DNS into the address bar followed by /owncloud
+### Restart Apache
 ```
-Example: 
-	http://owncloud.yourdomain.com/
-	192.168.1.254/owncloud
+sudo systemctl restart apache2
 ```
 
-Enter a Username & Password for the main adminstator
-![username and password](https://i.imgur.com/LOKsV74.png)
+
+## Useful Market Apps
+```
+Activity
+Announcement Center
+Calendar
+Contacts
+Custom Groups
+E2EE File Sharing
+Extract
+Files clipboard
+Gallery
+Impersonate
+Music
+Password Policy
+PDF Viewer
+Text Editor
+Text File Viewer
+Wallpaper 
+
+--- 
+	DO NOT USE IF OUTLOOK PLUGIN IS OR WILL BE INSTALLED
+		2-Factor Authentication  
+		Two factor backup codes
+---
+
+```
 
 
-Select "Storage & database", select "MySQL/MariaDB", fill in the information, and select "Finish setup"
+## Backing up ownCloud
 
-![storage and database](https://i.imgur.com/PK8ooYs.png)
+### Make Backup Directory for DB & Config Files
+```
+mkdir -p /backups/owncloud/db-backups; mkdir -p /backups/owncloud/config-data
+```
 
-## VirtualBox Shared Folder / Local External Storage
+### Backup Config & Data Folders
+```
+cd /var/www/owncloud
+rsync -Aax config data /backups/owncloud/config-data
+```
+
+### Database Backup
+If you changed any of the default database information (*which you should've*), you will also need to change the following.
+```
+cd /backups/owncloud/db-backups
+mysqldump --single-transaction -h localhost -u owncloud_db_user -p qwe owncloud_db > owncloud-db-backup_`date +"%Y-%m-%d"`.bak
+```
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/backup.html)
+
+
+## Restoring ownCloud Backup
+
+Needs to be added
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/restore.html)
+
+
+## Updating ownCloud
+
+### Review & Disable Third-Party Apps via Browser 
+Review any installed third-party apps for compatibility with all new ownCloud release. Ensure that they are all disabled before beginning the upgrade.
+```
+Go to Settings -> Admin -> Apps and disable all third-party apps.
+```
+
+### Enable Maintenance Mode
+```
+cd /var/www/owncloud/
+sudo -u www-data php occ maintenance:mode --on
+sudo systemctl stop apache2
+```
+
+### Backup ownCloud Directories
+Follow these steps of backing up ownCloud [here](https://github.com/peyton-brown/ownCloud-Installation-Security-Setup-Guide#backing-up-owncloud).
+
+
+### Move Current ownCloud Directory
+```
+sudo mv /var/www/owncloud /var/www/owncloud_backup
+```
+
+### Download Latest Version
+Download the latest [ownCloud server release](https://owncloud.com/older-versions/#server) to where your previous installation was (e.g. /var/www/). Replace the following url and zip name with the newest version at the time of reading.
+```
+cd /tmp; sudo wget https://download.owncloud.org/community/owncloud-complete-20210721.zip
+sudo unzip owncloud-complete-20210721.zip -d /var/www/
+```
+
+### Copy the Old Configuration Files to the Updated ownCloud Download
+```
+sudo cp -r /var/www/owncloud_backup/config/config.php /var/www/owncloud/config/config.php
+
+sudo cp -r /var/www/owncloud_backup/data /var/www/owncloud/data
+
+sudo cp -r /var/www/owncloud_backup/apps/ /var/www/owncloud/apps/
+
+sudo cp -r /var/www/owncloud_backup/apps-external/ /var/www/owncloud/apps-external/
+```
+
+### Set Permissions
+```
+sudo chown -R www-data:www-data /var/www/owncloud
+```
+
+### Start the Upgrade Process
+```
+cd /var/www/owncloud
+sudo -u www-data php occ upgrade
+```
+
+The upgrade can take anywhere from a few seconds to a few minutes, depending on the size of your installation. When it is finished you will see either a success message or an error message that indicates why the update did not complete.
+
+### Assuming your upgrade succeeded, disable maintenance mode.
+```
+sudo -u www-data php occ maintenance:mode --off
+sudo service apache2 start
+```
+
+### Check if the Update Applied
+Check that the version number reflects the new installation. 
+```
+Settings -> Admin -> General.
+```
+
+[Source](https://doc.owncloud.com/server/10.7/admin_manual/maintenance/manual_upgrade.html)
+
+
+## Local External Storage / VirtualBox Shared Folder
+
+Needs to be added
 
 https://tolotra.com/2018/07/28/how-to-install-ubuntu-server-on-virtualbox-with-shared-folder-and-ssh/
 
-
 https://doc.owncloud.com/server/next/admin_manual/configuration/files/external_storage/local.html
+
 
 ## Outlook Intergration
 
 For a basic overview of Outlook intergration with ownCloud, read [this](https://owncloud.com/features/outlook-plugin/).
 
 Go to the [FAQ](https://www.epikshare.com/faq/) page on epiKshare's website. This will give you all the information that is needed to get the plugin to work.
+
 ```
 You can find the download for the plugin under "How is the Outlook plugin installed?". 		
 
@@ -260,6 +336,7 @@ Once Outlook has restarted, click "ownCloud" on the ribbon bar. Click "Settings"
 From here, you can change the settings to include templates, share settings, and share duration defaults. To test if the plugin is working, email yourself with an attachment. You can either drag and drope a file or by clicking "Create Upload-Link". The ladder is preferable as you can change settings (like share duration) individually rather than leaving it to the defaults.
 
 This plugin is free for the first 30 days, after that you can purchase a license [here](https://oc.oem-cloud.com/en/owncloud-outlook-plugin-annual-license). 
+
 ```
 Click English at the top
 Select "Product-License"
